@@ -1,4 +1,4 @@
-import mountains from '@/assets/dolomites.jpg'
+import city from '@/assets/city.jpg'
 import architecture from '@/assets/architecture.jpg'
 import ceramics from '@/assets/ceramics.jpg'
 import kyoto from '@/assets/kyoto.jpg'
