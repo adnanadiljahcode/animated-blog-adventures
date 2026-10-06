@@ -1,4 +1,4 @@
 # Blog roadmap
-- [ ] Build editorial blog, category filtering, search, and article pages.
-- [ ] Add generated photography and accessible animation.
-- [ ] Check reading flow and layouts.
+- [x] Build editorial blog, category filtering, search, and article pages.
+- [x] Add generated photography and accessible animation.
+- [x] Check reading flow and layouts.
