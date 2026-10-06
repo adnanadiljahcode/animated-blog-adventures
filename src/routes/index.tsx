@@ -1,24 +1,21 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { useState } from 'react'
+import { ArrowRight, ArrowUpRight, Search, Sparkles } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Header, Footer } from '@/components/blog/header'
+import { stories, categories } from '@/lib/stories'
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+export const Route = createFileRoute('/')({
+ head: () => ({meta:[{title:'Elsewhere — A journal for the curious'},{name:'description',content:'Thoughtful stories on travel, design, culture and the art of everyday living. Find your next perspective at Elsewhere.'},{property:'og:title',content:'Elsewhere — A journal for the curious'},{property:'og:description',content:'Stories to take you somewhere new. Explore travel, design, culture and everyday inspiration.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),
+ component: Index,
+})
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+ const [category,setCategory] = useState('All stories')
+ const [query,setQuery] = useState('')
+ const feature = stories[0]
+ const visible = stories.filter((story,index)=> (category==='All stories' && !query ? index>0 : true) && (category==='All stories'||story.category===category) && `${story.title} ${story.subtitle} ${story.category} ${story.author}`.toLowerCase().includes(query.toLowerCase()))
+ if (!feature) return null
+ return <><Header/><main className="page-width"><section className="intro"><div><div className="eyebrow"><span className="eyebrow-dot"/>Independent minds. Shared stories.</div><h1>A little curiosity.<br/>A whole new <em>perspective.</em></h1></div><p>Stories on places, people, and the things<br/>that make life a little more interesting.</p></section>
+ <Link to="/stories/$slug" params={{slug:feature.slug}} className="feature" aria-label={`Read ${feature.title}`}><img src={feature.image} alt="An alpine cabin beneath misty peaks in the Dolomites" width={1600} height={912} fetchPriority="high"/><div className="feature-top"><span className="photo-label"><Sparkles/>The editor’s pick</span><span className="feature-number">01 — 04</span></div><div className="feature-content"><div className="feature-category">Travel & exploration</div><h2>{feature.title}</h2><p>{feature.subtitle}</p><div className="feature-bottom"><div className="author"><span className="avatar">{feature.initials}</span><div className="author-meta">{feature.author}<span>Oct 4, 2026</span><span>·</span><span>{feature.minutes} min read</span></div></div><div className="read-story"><span>Read the story</span><span className="arrow-circle"><ArrowRight/></span></div></div></div></Link>
+ <section id="stories" className="stories-section"><div className="stories-heading"><h2>The latest stories</h2><span>A fresh point of view, every week.</span></div><div className="story-toolbar"><div className="category-list" aria-label="Story categories">{categories.map(item=><Button key={item} variant="ghost" className="category-button" aria-pressed={category===item} onClick={()=>setCategory(item)}>{item}</Button>)}</div><label className="search-field"><Search/><input aria-label="Search stories" placeholder="Find a story…" value={query} onChange={event=>setQuery(event.target.value)}/></label></div><div className="story-grid">{visible.map(story=><article className="story-card" key={story.slug}><Link to="/stories/$slug" params={{slug:story.slug}} className="story-image" aria-label={`Read ${story.title}`}><img src={story.image} alt={story.subtitle} loading="lazy" width={928} height={720}/></Link><div className="story-info"><div className="story-kicker"><span className="category">{story.category}</span><span className="sep"/>{story.minutes} min read</div><h3><Link to="/stories/$slug" params={{slug:story.slug}}>{story.title}</Link></h3><p>{story.subtitle}</p><div className="story-byline"><span>By {story.author}</span><ArrowUpRight aria-hidden="true"/></div></div></article>)}{visible.length===0&&<p className="empty-state">No stories found. Try another word or category.</p>}</div></section><section className="journal-note"><div><div className="eyebrow">The elsewhere journal</div><h2>For the endlessly curious.</h2></div><p>We believe the best stories don’t just tell you something new. They make you see the everyday a little differently.</p></section></main><Footer/></>
 }
