@@ -88,17 +88,8 @@ If you'd like to extend this feature later, we could:
 - Add a clear button (✕) to quickly reset the input.
 - Highlight matching text within story titles and subtitles.
 - Add tag or date filtering.
-
-
-
-
-
-
-
-
-
  
- *** Add a clear button (✕) to the search input ***
+## Add a clear button (✕) to the search input
 
 To add a clear button (✕) to the search input, you combine conditional rendering, state reset, and accessible button markup.
 
@@ -201,14 +192,7 @@ To place the button neatly inside the right edge of the input pill:
 
 Whenever you'd like to implement this clear button into the site, let me know and we can switch to Build mode to wire it up!
 
-
-
-
-
-
-
-
-*** Highlighting search terms ***
+## Highlighting search terms
 
 Highlighting search terms in React requires splitting the text into matching and non-matching segments while preserving the original character casing.
 
