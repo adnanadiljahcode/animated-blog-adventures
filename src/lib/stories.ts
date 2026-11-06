@@ -2,10 +2,12 @@ import city from "@/assets/city.jpg";
 import architecture from "@/assets/architecture.jpg";
 import ceramics from "@/assets/ceramics.jpg";
 import kyoto from "@/assets/kyoto.jpg";
+import dolomites from "@/assets/dolomites.jpg";
 
 export const categories = [
   "All stories",
   "Travel",
+  "Outdoor",
   "Design",
   "Culture",
   "Lifestyle",
@@ -13,8 +15,29 @@ export const categories = [
 export const stories = [
   {
     slug: "the-art-of-getting-lost",
-    category: "Travel",
+    category: "Outdoor",
     title: "The art of getting lost",
+    subtitle:
+      "Finding a little more of ourselves in cities we’ve never truly seen.",
+    image: dolomites,
+    author: "Sophie Bennett",
+    initials: "SB",
+    date: "October 4, 2026",
+    minutes: 6,
+    intro:
+      "Somewhere between the last familiar street and the first glowing tower, the map became useless. For the first time in weeks, there was nothing to check, nowhere to hurry, and no reason to look anywhere but up.",
+    paragraphs: [
+      "The city doesn’t reveal itself all at once. It emerges in fragments: a lit window high above the street, the smell of rain on warm concrete, a neon sign humming patiently in the dusk. Walking here is less about arriving than about learning to notice.",
+      "We left the guidebook behind. The route wasn’t on any itinerary, and it wasn’t particularly well marked. It wound between glass towers and old brick before opening onto a plaza so quiet that the sound of our footsteps seemed almost impolite. We sat on a stone ledge, shared a coffee, and watched the lights come on across the skyline.",
+      "Travel often becomes a collection of things we have done. But the moments that stay are rarely the ones we planned. They are the conversations that go on too long, the wrong turns that end at a rooftop view, the evenings when we forget to take a photograph.",
+      "Getting lost isn’t always about geography. Sometimes it means stepping outside the story you’ve been telling yourself about how a day should unfold. It means letting a city surprise you, instead of asking it to confirm what you already know.",
+      "By the time we found the main avenue again, nothing remarkable had happened. And yet something had shifted. The skyline felt a little larger. The night felt like our own.",
+    ],
+  },
+  {
+    slug: "the-art-of-getting-lost-ii",
+    category: "Travel",
+    title: "The art of getting lost - II",
     subtitle:
       "Finding a little more of ourselves in cities we’ve never truly seen.",
     image: city,

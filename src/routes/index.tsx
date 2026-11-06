@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [category, setCategory] = useState("All stories");
   const [query, setQuery] = useState("");
-  const feature = stories[0];
+  const feature = stories[stories.length-1];
   const visible = stories.filter(
     (story, index) =>
       (category === "All stories" && !query ? index > 0 : true) &&
