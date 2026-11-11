@@ -32,15 +32,15 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [category, setCategory] = useState("All stories");
   const [query, setQuery] = useState("");
-  const feature = stories[stories.length-1];
+  const feature = stories[0];
   const visible = stories.filter(
     (story, index) =>
-      (category === "All stories" && !query ? index > 0 : true) &&
+      (category === "All stories" && !query ? index >= 0 : true) &&
       (category === "All stories" || story.category === category) &&
       `${story.title} ${story.subtitle} ${story.category} ${story.author}`
         .toLowerCase()
         .includes(query.toLowerCase()),
-  );
+  );    
   if (!feature) return null;
   return (
     <>
